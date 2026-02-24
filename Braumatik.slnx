@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Braumatik.Domain/Braumatik.Domain.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/Braumatik.UnitTests/">
+    <Project Path="tests/Braumatik.UniTests/Braumatik.UnitTests.csproj" />
+  </Folder>
+</Solution>
