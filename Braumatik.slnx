@@ -4,6 +4,6 @@
   </Folder>
   <Folder Name="/tests/" />
   <Folder Name="/tests/Braumatik.UnitTests/">
-    <Project Path="tests/Braumatik.UniTests/Braumatik.UnitTests.csproj" />
+    <Project Path="tests/Braumatik.UnitTests/Braumatik.UnitTests.csproj" />
   </Folder>
 </Solution>
