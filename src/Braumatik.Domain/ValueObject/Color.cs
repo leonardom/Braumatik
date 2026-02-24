@@ -21,12 +21,12 @@ public class Color
         if (Unit == targetUnit) return this;
         return (Unit, targetUnit) switch
         {
-            (ColorUnit.SRM, ColorUnit.EBC) => EBC((int)(Value * 1.97)),
-            (ColorUnit.SRM, ColorUnit.Lovibond) => Lovibond((int)(Value * 0.508)),
-            (ColorUnit.EBC, ColorUnit.SRM) => SRM((int)(Value / 1.97)),
-            (ColorUnit.EBC, ColorUnit.Lovibond) => Lovibond((int)(Value * 0.258)),
-            (ColorUnit.Lovibond, ColorUnit.SRM) => SRM((int)(Value / 0.508)),
-            (ColorUnit.Lovibond, ColorUnit.EBC) => EBC((int)(Value / 0.258)),
+            (ColorUnit.SRM, ColorUnit.EBC) => EBC(Value * 1.97),
+            (ColorUnit.SRM, ColorUnit.Lovibond) => Lovibond((Value + 0.76) / 1.3546),
+            (ColorUnit.EBC, ColorUnit.SRM) => SRM(Value * 0.508),
+            (ColorUnit.EBC, ColorUnit.Lovibond) => Lovibond(((Value * 0.508) + 0.76) / 1.3546),
+            (ColorUnit.Lovibond, ColorUnit.SRM) => SRM(1.3546 * Value - 0.76),
+            (ColorUnit.Lovibond, ColorUnit.EBC) => EBC(((Value * 1.3546)-0.76) / 1.97),
             _ => throw new InvalidOperationException($"Unsupported conversion from {Unit} to {targetUnit}.")
         };
     }
