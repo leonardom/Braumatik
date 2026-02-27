@@ -1,7 +1,7 @@
 using Braumatik.Domain.ValueObject;
 using Shouldly;
 
-namespace Braumatik.UnitTests.Domain.Entity;
+namespace Braumatik.UnitTests.Domain.ValueObject;
 
 public class ColorTest
 {
