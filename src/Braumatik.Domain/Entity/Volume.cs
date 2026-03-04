@@ -13,33 +13,22 @@ public class Volume
         Unit = unit;
     }
 
-    public Volume ToLiters()
-    {
-        return Unit switch
-        {
-            VolumeUnit.Milliliter => Create(Value / 1000, VolumeUnit.Liter),
-            VolumeUnit.Gallon => Create(Value * 3.78541, VolumeUnit.Liter),
-            _ => this,
-        };
-    }
+    public Volume ToLiters() => ConvertTo(VolumeUnit.Liter);
+    public Volume ToMilliliters() => ConvertTo(VolumeUnit.Milliliter);
+    public Volume ToGallons() => ConvertTo(VolumeUnit.Gallon);
 
-    public Volume ToMilliliters()
+    public Volume ConvertTo(VolumeUnit targetUnit)
     {
-        return Unit switch
+        if (Unit == targetUnit) return this;
+        return (Unit, targetUnit) switch
         {
-            VolumeUnit.Liter => Create(Value * 1000, VolumeUnit.Milliliter),
-            VolumeUnit.Gallon => Create(Value * 3.78541 * 1000, VolumeUnit.Milliliter),
-            _ => this,
-        };
-    }
-
-    public Volume ToGallons()
-    {
-        return Unit switch
-        {
-            VolumeUnit.Liter => Create(Value / 3.78541, VolumeUnit.Gallon),
-            VolumeUnit.Milliliter => Create((Value / 1000) / 3.78541, VolumeUnit.Gallon),
-            _ => this,
+            (VolumeUnit.Gallon, VolumeUnit.Liter) => Liters(Value * 3.78541),
+            (VolumeUnit.Milliliter, VolumeUnit.Liter) => Liters(Value / 1000),
+            (VolumeUnit.Liter, VolumeUnit.Milliliter) => Milliliters(Value * 1000),
+            (VolumeUnit.Gallon, VolumeUnit.Milliliter) => Milliliters(Value * 3.78541 * 1000),
+            (VolumeUnit.Liter, VolumeUnit.Gallon) => Gallons(Value / 3.78541),
+            (VolumeUnit.Milliliter, VolumeUnit.Gallon) => Gallons((Value / 1000) / 3.78541),
+            _ => throw new InvalidOperationException($"Unsupported conversion to {targetUnit}.")
         };
     }
 

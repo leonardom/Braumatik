@@ -15,6 +15,10 @@ public class Time
     public static Time Minutes(double value) => new(value, TimeUnit.Minute);
     public static Time Hours(double value) => new(value, TimeUnit.Hour);
 
+    public Time ToHours() => ConvertTo(TimeUnit.Hour);
+    public Time ToMinutes() => ConvertTo(TimeUnit.Minute);
+    public Time ToSeconds() => ConvertTo(TimeUnit.Second);
+
     public Time ConvertTo(TimeUnit targetUnit)
     {
         if (Unit == targetUnit) return this;

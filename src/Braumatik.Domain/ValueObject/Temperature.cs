@@ -14,6 +14,9 @@ public class Temperature
     public static Temperature Farenheit(double value) => new(value, TemperatureUnit.Farenheit);
     public static Temperature Celsius(double value) => new(value, TemperatureUnit.Celsius);
 
+    public Temperature ToCelsius() => ConvertTo(TemperatureUnit.Celsius);
+    public Temperature ToFarenheit() => ConvertTo(TemperatureUnit.Farenheit);
+
     public Temperature ConvertTo(TemperatureUnit targetUnit)
     {
         if (Unit == targetUnit) return this;

@@ -16,6 +16,10 @@ public class Color
     public static Color EBC(double value) => Create(value, ColorUnit.EBC);
     public static Color Lovibond(double value) => Create(value, ColorUnit.Lovibond);
 
+    public Color ToSRM() => ConvertTo(ColorUnit.SRM);
+    public Color ToEBC() => ConvertTo(ColorUnit.EBC);
+    public Color ToLovibond() => ConvertTo(ColorUnit.Lovibond);
+
     public Color ConvertTo(ColorUnit targetUnit)
     {
         if (Unit == targetUnit) return this;

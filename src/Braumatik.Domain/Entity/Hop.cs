@@ -32,7 +32,7 @@ public class Hop : Ingredient
         // U = 1.65 × 0.000125^(SG-1) × (1 - e^(-0.04 × time)) / 4.15
         var batchSizeGallons = batchSize.ToGallons().Value;
         var weightInOunces = Weight.ConvertTo(MassUnit.Ounce).Value;
-        var timeInMinutes = Time.ConvertTo(TimeUnit.Minute).Value;
+        var timeInMinutes = Time.ToMinutes().Value;
         var u = 1.65 * Math.Pow(0.000125, earlyOg - 1) * (1 - Math.Pow(Math.E, -0.04 * timeInMinutes)) / 4.15;
         if (Usage != HopUsage.Boil)
         {
